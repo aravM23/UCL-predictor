@@ -1,0 +1,79 @@
+seed: 42
+
+features:
+  lookbacks: [5, 10]
+  max_goals: 6
+  elo_k: 25
+  elo_initial: 1500
+  rest_days_max: 14
+  travel_threshold_km: 500
+
+data:
+  train_seasons: ["2018-19", "2019-20", "2020-21", "2021-22"]
+  val_seasons: ["2022-23"]
+  test_seasons: ["2023-24"]
+  min_matches_per_team: 10
+
+modelA:
+  algo: lightgbm
+  params:
+    num_leaves: 63
+    learning_rate: 0.05
+    n_estimators: 1200
+    subsample: 0.8
+    colsample_bytree: 0.8
+    objective: multiclass
+    num_class: 3
+    class_weight: balanced
+    reg_alpha: 0.1
+    reg_lambda: 0.1
+    max_depth: 7
+    min_child_samples: 20
+    random_state: 42
+  early_stopping_rounds: 100
+  verbose_eval: 100
+
+modelB:
+  max_goals: 6
+  dc_correlation: true
+  regularization:
+    attack_strength: 0.01
+    defense_strength: 0.01
+  convergence:
+    max_iter: 1000
+    tol: 1e-6
+  initialization:
+    home_advantage: 0.3
+    attack_mean: 1.4
+    defense_mean: 1.4
+
+calibration:
+  method: isotonic  # or 'platt'
+  cv_folds: 5
+  out_of_bounds: clip  # or 'nan'
+
+ensemble:
+  type: logistic  # or 'xgboost'
+  params:
+    max_iter: 1000
+    C: 1.0
+    random_state: 42
+  cv_folds: 5
+
+betting:
+  kelly_cap: 0.05
+  min_edge: 0.02
+  min_odds: 1.1
+  max_odds: 10.0
+  bankroll_fraction: 0.02  # Max total exposure
+  
+parlay:
+  max_legs: 5
+  min_correlation: 0.1
+  simulation_runs: 20000
+  utility_function: log  # or 'linear'
+  
+evaluation:
+  metrics: [brier_score, log_loss, calibration_error, roc_auc]
+  backtest_periods: 100  # Number of matchdays for rolling backtest
+  profit_kelly_caps: [0.01, 0.02, 0.05, 0.1]

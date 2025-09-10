@@ -1,0 +1,45 @@
+features:
+  rolling_windows:
+    goals: [5, 10]
+    points: [5, 10] 
+    xg: [5, 10]  # If available
+  
+  team_strength:
+    elo_enabled: true
+    elo_k_factor: 25
+    elo_home_advantage: 100
+    
+  context:
+    home_away_splits: true
+    knockout_stage_flag: true
+    second_leg_handling: true
+    neutral_venue_flag: true
+    
+  schedule:
+    rest_days: true
+    consecutive_away: true
+    travel_distance: true  # If venue coordinates available
+    fixture_congestion: true  # Matches in last 2 weeks
+    
+  odds:
+    implied_probabilities: true
+    market_efficiency: true  # Odds movement indicators
+    bookmaker_count: 3  # Minimum bookmakers for consensus
+    
+  player:
+    availability_simple: true  # Count of missing starters
+    minutes_lost: true  # Recent minutes lost to injury/suspension
+    
+interactions:
+  home_away_deltas: true  # home_feature - away_feature
+  strength_ratios: true   # home_elo / away_elo
+  form_momentum: true     # Recent form trend indicators
+
+target_encoding:
+  historical_h2h: 3  # Minimum head-to-head matches
+  venue_effects: true
+  
+data_quality:
+  min_odds_count: 2  # Skip matches with insufficient odds data
+  outlier_removal: true  # Remove extreme scorelines (>6 goals)
+  missing_value_strategy: "forward_fill"  # For rolling features
