@@ -11,10 +11,9 @@ from ucl_fixtures_2025 import UCL_2025_TEAMS, UCL_2025_FIXTURES
 
 # Set page config
 st.set_page_config(
-    page_title="⚽ Champions League Predictor",
+    page_title="Champions League Betting Assistant",
     page_icon="⚽",
-    layout="wide",
-    initial_sidebar_state="expanded"
+    layout="wide"
 )
 
 # Custom CSS
@@ -166,7 +165,7 @@ def simulate_prediction(home_team, away_team):
 
 def main():
     # Header
-    st.markdown('<h1 class="main-header">⚽ Champions League Predictor 2025/26</h1>', unsafe_allow_html=True)
+    st.markdown('<h1 class="main-header">⚽ Champions League Betting Assistant 2025/26</h1>', unsafe_allow_html=True)
     
     # Sidebar
     st.sidebar.title("🎯 Real UCL Fixtures")
@@ -441,7 +440,7 @@ def main():
     st.markdown("---")
     st.markdown("""
     <div style='text-align: center; color: #666;'>
-        <p>⚽ Champions League Predictor 2025/26 - Real Fixtures & Teams</p>
+        <p>⚽ Champions League Betting Assistant 2025/26 - Real Fixtures & Teams</p>
         <p>Predictions based on team strength analysis and statistical modeling</p>
         <p>🔬 This is for educational purposes - always bet responsibly</p>
         <br>

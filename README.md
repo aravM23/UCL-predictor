@@ -1,4 +1,4 @@
-# Champions League Football Predictor
+# Champions League Betting Assistant
 
 A comprehensive Champions League match prediction system that combines machine learning, sports analytics, and betting theory to generate:
 
