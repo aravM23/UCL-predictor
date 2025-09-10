@@ -79,12 +79,11 @@ python src/models/ensemble.py
 # CLI prediction
 python cli.py predict --home "Real Madrid" --away "Manchester City" --date "2024-04-17"
 
-# Start Streamlit app
-streamlit run src/app/serve.py
+# Start Streamlit app locally
+streamlit run simple_app.py
 
-# REST API
-python src/app/serve.py --port 8000
-curl "http://localhost:8000/predict?home=Real Madrid&away=Manchester City&date=2024-04-17"
+# OR visit the live demo
+# 🌐 Live Demo: [UCL Predictor App](https://share.streamlit.io) (coming soon)
 ```
 
 ## 📊 Key Features
