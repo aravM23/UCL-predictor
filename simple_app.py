@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta, date
 import os
 from pathlib import Path
+import math
 from scipy.stats import poisson
 from ucl_fixtures_2025 import UCL_2025_TEAMS, UCL_2025_FIXTURES
 
@@ -121,8 +122,8 @@ def simulate_prediction(home_team, away_team):
     for home_goals in range(6):
         for away_goals in range(6):
             # Poisson probability
-            prob_home = (home_xg ** home_goals) * np.exp(-home_xg) / np.math.factorial(home_goals)
-            prob_away = (away_xg ** away_goals) * np.exp(-away_xg) / np.math.factorial(away_goals)
+            prob_home = (home_xg ** home_goals) * np.exp(-home_xg) / math.factorial(home_goals)
+            prob_away = (away_xg ** away_goals) * np.exp(-away_xg) / math.factorial(away_goals)
             prob = prob_home * prob_away
             
             if prob > 0.005:  # Only include probable scorelines
